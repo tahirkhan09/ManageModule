@@ -23,15 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="20140811114843_create_events.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20140811114843_create_events.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -77,10 +68,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.296875" vertical-offset="369" max-vertical-offset="945">
+            <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="945">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140811101755_devise_create_users.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="79" selection-start="726" selection-end="726" vertical-scroll-proportion="0.6261343" vertical-offset="0" max-vertical-offset="720">
               <folding />
             </state>
           </provider>
@@ -99,15 +99,6 @@
         <entry file="file://$PROJECT_DIR$/app/models/expense.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="1" column="18" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="29" selection-start="664" selection-end="664" vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="495">
               <folding />
             </state>
           </provider>
@@ -736,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20140811102731_create_roles.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
@@ -857,7 +841,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.296875" vertical-offset="369" max-vertical-offset="945">
+        <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="79" selection-start="726" selection-end="726" vertical-scroll-proportion="0.6261343" vertical-offset="0" max-vertical-offset="720">
           <folding />
         </state>
       </provider>
