@@ -1,0 +1,82 @@
+<div class="container-fluid">
+
+<div class="row-fluid sortable ui-sortable ">
+
+  <div class="box span12">
+    <div style="margin:0px 0px 35px 0px">
+    <%= link_to "New Conference",new_event_path, :class => 'btn btn-primary' %>
+      <%= link_to "Report",new_event_path, :class => 'btn btn-primary' %>
+      </div>
+
+
+
+
+
+
+    <div class="box-header">
+      <h2><i class="icon-align-justify"></i>Listing Events</h2>
+      <div class="box-icon">
+        <a class="btn-setting" href="#"><i class=""></i></a>
+        <a class="btn-minimize" href="#"><i class=""></i></a>
+        <a class="btn-close" href="#"><i class=""></i></a>
+      </div>
+    </div>
+    <div class="box-content">
+      <table class="table table-bordered table-striped table-condensed" id="Conf_table" class="conf_table">
+        <thead>
+        <tr>
+          <th>Event ID</th>
+          <th>Event Date</th>
+          <th>Event Type</th>
+          <th>Speaker</th>
+          <th>Show</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @events.each do |event| %>
+            <tr>
+             <td><%= event.event_id_dlp %></td>
+             <td><%= event.event_date %></td>
+             <td><%= event.event_type %></td>
+             <td><%= event.speaker_name %></td>
+             <td><%= link_to "Show",event , :class => 'label label-success'%></td>
+             <td><%= link_to "Edit",edit_event_path(event), :class => 'label label-warning' %></td>
+             <td><%= link_to "Delete", event_path(event),:method => :delete, :data => {:confirm => "Are You Sure!!"}, :class => 'label label-important' %></td>
+              <td><%= link_to "Manage Event",event , :class => 'label label-success'%></td>
+              <td><%= link_to "Sign In Sheet",event , :class => 'label label-success'%></td>
+              <td><%= link_to "Compliance",event , :class => 'label label-success'%></td>
+
+            </tr>
+        <%end%>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#Conf_table').dataTable({
+          "bPaginate":true,
+          "bSort":true,
+          "asDataSearch":true,
+          "bAutoWidth":false
+
+      });
+      $("#Conf_table_length").hide()
+  })
+
+    //    $(document).ready(function () {
+    //        Checks.init();
+    //    })
+</script>
+<style>
+    #Conf_table_previous {
+        margin: 0px 25px 0px 0px;
+    }
+</style>

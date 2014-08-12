@@ -1,0 +1,122 @@
+<!--<div class="row-fluid">-->
+<div class="row-fluid">
+  <div class="box span12">
+    <div class="box-header">
+      <h2><i class="icon-align-justify"></i>Create Event</h2>
+
+      <div class="box-icon">
+        <a class="btn-setting" href="#"><i class=""></i></a>
+        <a class="btn-minimize" href="#"><i class=""></i></a>
+        <a class="btn-close" href="#"><i class=""></i></a>
+      </div>
+    </div>
+    <div class="box-content flow_auto">
+
+      <%= form_for :event, url: event_path do |f| %>
+          <div class="control-group">
+            <div class="span6">
+              <label class="control-label">Event Id DLP</label>
+              <%= f.text_field :event_id_dlp, :placeholder => "" %>
+            </div>
+            <div class="span6">
+
+              <label class="control-label">Event Id SMI</label>
+              <%= f.text_field :event_id_smi, :placeholder => "" %>
+            </div>
+          </div>
+
+
+          <div class="control-group w_100">
+            <div class="span6">
+              <label class="control-label">Event Type</label>
+              <%= f.select :event_type, EventsHelper::Event_type %>
+            </div>
+            <div class="span6">
+
+              <label class="control-label">REP Name</label>
+              <%= f.text_field :rep_name, :placeholder => "" %>
+            </div>
+          </div>
+
+          <div class="control-group w_100">
+            <div class="span6">
+
+              <label class="control-label">Speaker Name</label>
+              <%= f.text_field :speaker_name, :placeholder => "" %>
+            </div>
+
+            <div class="span6">
+              <label class="control-label">Event Date</label>
+              <%= f.select :event_date, 1..31 %>
+            </div>
+          </div>
+
+
+          <div class="control-group w_100">
+            <div class="span6">
+              <label class="control-label">Event Month</label>
+              <%= f.select :event_month, EventsHelper::Event_month %>
+            </div>
+
+
+            <div class="span6">
+
+              <label class="control-label">Quarter</label>
+              <%= f.select :quarter, EventsHelper::Quarter_arr%>
+            </div>
+          </div>
+
+          <div class="control-group w_100">
+            <div class="span6">
+
+              <label class="control-label">Event City</label>
+              <%= f.text_field :event_city, :placeholder => "" %>
+            </div>
+
+            <div class="span6">
+
+              <label class="control-label">Event State</label>
+              <%= f.select :event_state, EventsHelper::Usstates %>
+            </div>
+          </div>
+
+          <div class="control-group w_100">
+            <div class="span6">
+              <label class="control-label">Speaker City</label>
+              <%= f.text_field :speaker_city, :placeholder => "" %>
+            </div>
+            <div class="span6">
+              <label class="control-label">Speaker State</label>
+              <%= f.select :speaker_state, EventsHelper::Usstates %>
+            </div>
+          </div>
+
+
+          <div class="control-group w_100">
+            <label class="control-label">Speaker Travel Required?</label>
+            <div class="controls">
+              <label class="radio line">
+                <div class="radio" id="uniform-undefined">
+                  <span class="checked"><%= f.radio_button :speaker_travel_required, true %></span></div>
+                Yes
+              </label>
+              <label class="radio line">
+                <div class="radio" id="uniform-undefined">
+                  <span class=""><%= f.radio_button :speaker_travel_required, false %></span></div>
+                No
+              </label>
+            </div>
+          </div>
+          <%#= f.text_field :speaker_travel_required, :placeholder => "" %>
+          <div class="control-group w_100">
+            <div class="span9" style="margin:0px 0px 0px 0px">
+                    <div style="float:right">
+            <%= f.submit "Save", :class => "btn btn-success" %>
+          </div>
+          </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!--</div>-->
