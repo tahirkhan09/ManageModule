@@ -23,15 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="20140811114843_create_events.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20140811114843_create_events.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="6" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="event.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/event.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,64 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20140811115834_create_sign_in_sheets.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20140811115834_create_sign_in_sheets.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="22" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="945">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20140811101755_devise_create_users.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="79" selection-start="726" selection-end="726" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.ru" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.ru">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20140811115905_create_expenses.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20140811115905_create_expenses.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="expense.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/expense.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="18" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+            <state line="7" column="26" selection-start="182" selection-end="182" vertical-scroll-proportion="0.17558528" vertical-offset="0" max-vertical-offset="945">
               <folding />
             </state>
           </provider>
@@ -151,9 +88,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="52" />
     <option name="width" value="957" />
-    <option name="height" value="715" />
+    <option name="height" value="687" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -405,7 +342,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="957" height="715" extended-state="6" />
+    <frame x="65" y="52" width="957" height="687" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884902" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -616,16 +553,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="945">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="79" selection-start="726" selection-end="726" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
           <folding />
         </state>
       </provider>
@@ -637,9 +567,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140811101755_devise_create_users.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="539">
+        <state line="23" column="79" selection-start="726" selection-end="726" vertical-scroll-proportion="0.6261343" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="26" selection-start="182" selection-end="182" vertical-scroll-proportion="0.17558528" vertical-offset="0" max-vertical-offset="945">
           <folding />
         </state>
       </provider>
