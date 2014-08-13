@@ -1,9 +1,11 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @events = Event.all
   end
 
   def new
+    #aaaaaaaaaa
     @event = Event.new()
   end
 
@@ -18,9 +20,18 @@ class EventsController < ApplicationController
 
   end
 
-  def show
 
+  def destroy
+    aaaaaaaaaaaaaa
+    @event = Event.find(params[:format])
+    if @event.delete
+      redirect_to events_index_path
+    end
   end
+
+def edit
+  @event = Event.find(params[:format])
+end
 
 
 

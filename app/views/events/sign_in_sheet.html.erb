@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Sign in Sheet</title>
+        <!-- CDN-based stylesheet references for Kendo UI Web -->
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet" />
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet" />
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet" />
+		<!-- CDN-based script reference for Kendo UI -->
+		<script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>
+
+
+	</head>
+	<body>
+		<div class="wrapper">
+
+				<div class="content">
+
+        	<div class="content_wrapper">
+
+<h1 class="title">Sign in Sheet</h1>
+					<div class="left">
+						<p>Event ID DLP : 1234</p>
+						<p>Event ID SMI : 1200</p>
+						<p>Speaker : Mr. John Doe</p>
+						<p>Rep : Mr. Johany Deppy</p>
+						<p>Event Date : 01/19/2014</p>
+						<p>Event Time : 10.00 PM</p>
+						<p>Event State : Albama</p>
+					</div>
+					<!-- left -->
+
+					<div class="right">
+
+					<div class="sign_in">
+
+					<table border="0" cellspacing="0" cellpadding="0">
+					  <tr>
+					    <td># Non Profiled Attendees</td>
+					    <td><input type="text" class="form-control"></td>
+					  </tr>
+
+					  <tr>
+					    <td># Prescribing Attendees</td>
+					    <td><input type="text" class="form-control"></td>
+					  </tr>
+
+					  <tr>
+					    <td># Client Employee Attendees</td>
+					    <td><input type="text" class="form-control"></td>
+					  </tr>
+					  <tr>
+					    <td># Speaker</td>
+					    <td><input type="text" class="form-control"></td>
+					  </tr>
+					  <tr>
+					    <td><strong>Total Attendees</strong></td>
+					    <td><input type="text" class="form-control"></td>
+					  </tr>
+
+					</table>
+
+
+
+
+
+
+
+
+				<footer>
+					<button type="button" class="btn btn-primary  ">Save</button>
+					<a class="btn btn-primary " href="/events/index">Back</a>
+				</footer>
+
+
+				</div>
+				<!-- manage events -->
+
+
+
+
+					</div>
+					<!-- right -->
+
+
+
+
+				</div> <!-- content ends -->
+
+
+            </div> <!-- content_wrapper ends -->
+
+		</div><!-- wrapper ends -->
+
+
+
+
+
+
+
+		<script >
+
+			// $("#modal-states").kendoDropDownList();
+			// $("#timezone").kendoDropDownList();
+			$("#vtd-datepicker, #to-datepicker, #evt_date").kendoDatePicker();
+
+
+			// Create Event form
+			$("#expense1,  #paymentBy").kendoDropDownList();
+
+
+
+		</script>
+
+    </body>
+
+</html>

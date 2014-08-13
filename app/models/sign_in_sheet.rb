@@ -1,3 +1,3 @@
 class SignInSheet < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :events
 end

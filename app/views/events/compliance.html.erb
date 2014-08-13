@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Compliance</title>
+        <!-- CDN-based stylesheet references for Kendo UI Web -->
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet" />
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet" />
+		<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet" />
+		<!-- CDN-based script reference for Kendo UI -->
+		<script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>
+
+
+	</head>
+	<body>
+		<div class="wrapper">
+				<div class="content">
+
+        	<div class="content_wrapper">
+
+<h1 class="title">Compliance</h1>
+
+					<p class="info-icons">
+					<span class="compliances">Compliant</span>
+					<span class="non-compliances">Non-compliant</span>
+					</p>
+
+					<div class="left">
+						<p>Event ID DLP : 1234</p>
+						<p>Event ID SMI : 1200</p>
+						<p>Speaker : Mr. John Doe</p>
+						<p>Rep : Mr. Johany Deppy</p>
+						<p>Event Date : 01/19/2014</p>
+						<p>Event Time : 10.00 PM</p>
+						<p>Event State : Albama</p>
+					</div>
+					<!-- left -->
+
+					<div class="right">
+
+					<div class="sign_in compliance">
+
+
+
+					<table class="notes_holder" width="100%" border="0" cellspacing="0" cellpadding="0">
+						  <tr>
+						    <td>
+						    	<textarea class="form-control" rows="5">Notes</textarea>
+						    </td>
+
+						  </tr>
+
+
+
+						</table>
+						<!-- Notes -->
+
+
+					<table border="0" cellspacing="0" cellpadding="0">
+					  <tr>
+					    <td>Total Attendees</td>
+					    <td><input type="text" class="form-control" placeholder="From sign in sheet"></td>
+					  </tr>
+
+					  <tr>
+					    <td>Final Guarantee $</td>
+					    <td><input type="text" class="form-control"  placeholder="From sign in sheet"></td>
+					  </tr>
+
+					  <tr>
+					    <td>Final Guarantee Count</td>
+					    <td><input type="text" class="form-control"  placeholder="From sign in sheet"></td>
+					  </tr>
+					  <tr>
+					    <td>Total F&B Cost</td>
+					    <td><input type="text" class="form-control"  placeholder="From sign in sheet"></td>
+					  </tr>
+					  <tr>
+					    <td>NS HCP #</td>
+					    <td><input type="text" class="form-control"  placeholder="Calculated"></td>
+					  </tr>
+					  <tr>
+					    <td>NS HCP $</td>
+					    <td><input type="text" class="form-control"  placeholder="Calculated"></td>
+					  </tr>
+					  					  <tr>
+					    <td>Net Meal Cost (excluding NH HCP)</td>
+					    <td><input type="text" class="form-control"  placeholder="Calculated"></td>
+					  </tr>
+					  					  <tr>
+					    <td>Meal Cost/Attire</td>
+					    <td><input type="text" class="form-control"  placeholder="Calculated"></td>
+					  </tr>
+
+					</table>
+
+
+
+
+				<footer>
+					<button type="button" class="btn btn-primary  ">Save</button>
+					<a class="btn btn-primary " href="/events/index">Back</a>
+				</footer>
+
+
+				</div>
+				<!-- manage events -->
+
+
+
+
+					</div>
+					<!-- right -->
+
+
+
+
+				</div> <!-- content ends -->
+
+
+            </div> <!-- content_wrapper ends -->
+
+		</div><!-- wrapper ends -->
+
+
+
+
+
+
+
+		<script >
+
+			// $("#modal-states").kendoDropDownList();
+			// $("#timezone").kendoDropDownList();
+			$("#vtd-datepicker, #to-datepicker, #evt_date").kendoDatePicker();
+
+
+			// Create Event form
+			$("#expense1,  #paymentBy").kendoDropDownList();
+
+
+
+		</script>
+
+    </body>
+
+</html>

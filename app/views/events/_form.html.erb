@@ -1,0 +1,166 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <!--<title>Create Event</title>-->
+   <!--CDN-based stylesheet references for Kendo UI Web-->
+  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet"/>-->
+  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet"/>-->
+  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet"/>-->
+  <!--&lt;!&ndash; CDN-based script reference for Kendo UI &ndash;&gt;-->
+  <!--<script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>-->
+</head>
+
+<%= form_for @event, url: event_path  do |f|%>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="create_evt">
+      <tbody>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <label for="dlp_id">Event ID DLP</label>
+            <%= f.text_field :event_id_dlp, :placeholder => "Event ID e.g. 1234", :class => "form-control", :id => "dlp_id" %>
+            <!--<input type="text" placeholder="Event ID e.g. 1234" class="form-control" id="dlp_id">-->
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label for="smi_id">Program Name</label>
+            <!-- <input id="smi_id" type="text" class="form-control" placeholder="Event ID e.g. 1234"> -->
+            <br>
+            <%= f.select :event_id_smi, EventsHelper::Programme_name, :id => "program_type" %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="rep_name">Rep Name</label>
+            <%= f.text_field :rep_name, :placeholder => "Rep Name", :class => "form-control", :id => "rep_name" %>
+            <!--<input type="text" placeholder="Rep Name" class="form-control" id="rep_name">-->
+          </div>
+
+        </td>
+        <td>
+
+
+          <div class="form-group">
+            <label for="speaker_name">Speaker Name</label>
+            <%= f.text_field :speaker_name, :placeholder => "Speaker Name", :class => "form-control", :id => "speaker_name" %>
+            <!--<input type="text" placeholder="Speaker Name" class="form-control" id="speaker_name">-->
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td width="50%">
+                <div class="form-group">
+                  <label for="event_type">Event Type</label><br>
+                  <%= f.select :event_type, EventsHelper::Event_type %>
+                </div>
+              </td>
+              <td class="padding-left">
+                <div class="form-group">
+                  <label for="evt_date">Event Date</label><br>
+                  <%= f.text_field :event_date, :placeholder => "Date", :id => "datetimepicker" %>
+                  <br>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <div class="form-group">
+            <label for="quarter">Quarter</label><br>
+            <%= f.select :quarter, EventsHelper::Quarter_arr %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td width="50%">
+                <div class="form-group">
+                  <label for="evt_city">Event City</label>
+                  <%= f.text_field :event_city, :placeholder => "Event City", :class => "form-control", :id => "evt_city" %>
+                  <!--<input type="text" placeholder="Event City" class="form-control" id="evt_city">-->
+                </div>
+              </td>
+              <td class="padding-left">
+                <div class="form-group">
+                  <label for="us_states">Event State</label><br>
+                  <%= f.select :event_state, EventsHelper::Usstates %>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </td>
+        <td>
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+              <td width="50%">
+                <div class="form-group">
+                  <label for="speaker_city">Speaker City</label>
+                  <%= f.text_field :speaker_city, :placeholder => "" ,:class=>"form-control", :id=>"speaker_city"%>
+                  <!--<input type="text" placeholder="Speaker City" class="form-control" id="speaker_city">-->
+                </div>
+              </td>
+              <td class="padding-left">
+                <div class="form-group">
+                  <label for="speaker_states">Speaker State</label><br>
+                  <%= f.select :speaker_state, EventsHelper::Usstates %>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+<!---->
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+      <tr>
+        <td width="50%">
+          <label>Speaker Travel Required?</label>
+          <label>
+            <%= f.radio_button :speaker_travel_required, true %>
+            <!--<input type="radio" id="TravelRequired_0" value="radio" name="TravelRequired">-->
+            Yes
+          </label>
+          <label>
+            <%= f.radio_button :speaker_travel_required, false %>
+            <!--<input type="radio" id="TravelRequired_1" value="radio" name="TravelRequired">-->
+            No
+          </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<!---->
+    <footer>
+      <%= f.submit "Create an Event", :class => "btn btn-primary" %>
+      <!--<button class="btn btn-primary " type="submit ">Create an Event</button>-->
+      <a onclick="window.location.href='/events/index';" href="" class="btn btn-primary ">Back</a>
+    </footer>
+<% end %>
+<script>
+    $("#datetimepicker").kendoDatePicker();
+    $("#event_event_state, #event_speaker_state, #event_event_type, #event_quarter, #event_event_id_smi, #program_type, #event_type, #program_type, #quarter, #us_states, #speaker_states").kendoDropDownList();
+</script>

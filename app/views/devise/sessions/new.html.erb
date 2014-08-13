@@ -1,17 +1,40 @@
-<h2>Sign in</h2>
+<h1 class="title">Sign In</h1>
+
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="create_evt">
+      <tbody>
+      <tr width="25%">
+        <td width="25%">
+          <div class="form-group" style="width: 25%">
+            <label for="dlp_id">Email</label>
+            <%= f.email_field :email, autofocus: true , :class => "form-control", :id => "dlp_id"%>
+            <%#= f.text_field :event_id_dlp, :placeholder => "Event ID e.g. 1234", :class => "form-control", :id => "dlp_id" %>
+            <!--<input type="text" placeholder="Event ID e.g. 1234" class="form-control" id="dlp_id">-->
+          </div>
+        </td>
+      </tr>
+        <tr width="25%">
+        <td width="25%">
+          <div class="form-group" style="width: 25%">
+            <label for="smi_id">Password</label>
+            <!-- <input id="smi_id" type="text" class="form-control" placeholder="Event ID e.g. 1234"> -->
+            <br>
+            <%= f.password_field :password, autocomplete: "off" , :class => "form-control", :id => "dlp_id"%>
+            <%#= f.select :event_id_smi, EventsHelper::Programme_name, :id => "program_type" %>
+          </div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+        </td>
+        </tr>
 
+
+          </tbody>
+        </table>
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
   <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
+  <div><%= f.submit "Sign in" , :class => "btn btn-primary" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
