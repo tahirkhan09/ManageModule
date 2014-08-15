@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get "sign_in_sheet/index"
+
   get "events/index"
   get "events/manage_event"
-  get "events/sign_in_sheet"
+  get "sign_in_sheet/sign_in_sheet"
+  post "sign_in_sheet/add_sign_in_sheet"
+  patch "/sign_in_sheet/add_sign_in_sheet"
   get "events/compliance"
   devise_for :users
   get "welcome/index"

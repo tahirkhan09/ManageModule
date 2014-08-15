@@ -45,7 +45,7 @@
       <!--<td><%#= link_to "Edit",edit_event_path(event), :class => 'label label-warning' %></td>-->
       <!--<td><%#= link_to "Delete", event_path(event),:method => :delete, :data => {:confirm => "Are You Sure!!"}, :class => 'label label-warning' %></td>-->
       <td><a href="/events/manage_event">ME</a></td>
-      <td><a href="/events/sign_in_sheet">SI</a></td>
+      <td><a href="/sign_in_sheet/sign_in_sheet?id=<%= event.id %>">SI</a></td>
       <td><a href="/events/compliance">C</a></td>
       <td>T</td>
       <td><i class="fa fa-lock"></i></td>

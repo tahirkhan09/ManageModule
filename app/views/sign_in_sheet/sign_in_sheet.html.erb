@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Sign in Sheetssssss</title>
+  <!-- CDN-based stylesheet references for Kendo UI Web -->
+  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet"/>
+  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet"/>
+  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet"/>
+  <!-- CDN-based script reference for Kendo UI -->
+  <script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>
+
+
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="content">
+    <%# params[:id] %>
+    <% @event = Event.find(params[:id]) %>
+    <%# @event.inspect %>
+
+    <div class="content_wrapper">
+
+      <h1 class="title">Sign in Sheet</h1>
+
+      <div class="left">
+        <p>Event ID DLP : <%= @event.event_id_dlp %></p>
+
+        <p>Event ID SMI : <%= @event.event_id_smi %></p>
+
+        <p>Speaker : <%= @event.speaker_name %></p>
+
+        <p>Rep : <%= @event.rep_name %></p>
+
+        <p>Event Date : <%= @event.event_date %></p>
+
+        <!--<p>Event Time : 10.00 PM</p>-->
+
+        <p>Event State : <%= @event.event_state %></p>
+      </div>
+      <!-- left -->
+
+      <div class="right">
+
+        <div class="sign_in">
+          <% @sheet = SignInSheet.where(:event_id => @event.id).first %>
+          <%#= @sheet.inspect %>
+              <% if @sheet.present? %>
+              <% @add_event_sign_in_sheet = @sheet %>
+              <% else %>
+              <% @add_event_sign_in_sheet = SignInSheet.new %>
+              <% end %>
+          <%# @add_event_sign_in_sheet = SignInSheet.new || SignInSheet.where(:event_id => @event.id).first%>
+          <%= form_for @add_event_sign_in_sheet, :url => "/sign_in_sheet/add_sign_in_sheet" do |f| %>
+          <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td># Non Profiled Attendees</td>
+              <td>
+              <%= f.text_field :non_profiled_attendee, :class => "form-control", :id => "" %>
+              </td>
+            </tr>
+            <%= hidden_field_tag :event_id, @event.id %>
+            <tr>
+              <td># Prescribing Attendees</td>
+              <td>
+                <%= f.text_field :prescribing_attendee , :class => "form-control", :id => ""  %>
+              </td>
+            </tr>
+
+            <tr>
+              <td># Client Employee Attendees</td>
+              <td>
+                <%= f.text_field :client_employee_attendee , :class => "form-control", :id => ""  %>
+              </td>
+            </tr>
+            <tr>
+              <td># Speaker</td>
+              <td>
+                <%= f.text_field :speaker, :class => "form-control", :id => "" %>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Total Attendees</strong></td>
+              <td>
+                <% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
+                <%#= @sign_in.inspect %>
+                <% if @sign_in.present? %>
+                <% total =  @sign_in.non_profiled_attendee.to_i + @sign_in.prescribing_attendee.to_i + @sign_in.client_employee_attendee.to_i%>
+                    <% end %>
+                <%= text_field_tag :total_attendee, (total.present? ? total : ""), :class => "form-control", :id => "" %>
+              </td>
+            </tr>
+
+          </table>
+
+
+
+          <footer>
+            <%= f.submit "Save", :id => "add_flight_detail", :class=> "btn btn-primary" %>
+            <!--<button type="button" class="btn btn-primary  ">Save</button>-->
+            <a class="btn btn-primary " href="/events/index">Back</a>
+          </footer>
+              <% end %>
+
+
+        </div>
+        <!-- manage events -->
+
+
+      </div>
+      <!-- right -->
+
+
+    </div>
+    <!-- content ends -->
+
+
+  </div>
+  <!-- content_wrapper ends -->
+
+</div>
+<!-- wrapper ends -->
+
+
+<script>
+
+    // $("#modal-states").kendoDropDownList();
+    // $("#timezone").kendoDropDownList();
+    $("#vtd-datepicker, #to-datepicker, #evt_date").kendoDatePicker();
+
+
+    // Create Event form
+    $("#expense1,  #paymentBy").kendoDropDownList();
+
+
+</script>
+
+</body>
+
+</html>
