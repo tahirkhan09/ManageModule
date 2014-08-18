@@ -29,7 +29,7 @@
       <div class="left">
         <p>Event ID DLP : <%= @event.event_id_dlp %></p>
 
-        <p>Event ID SMI : <%= @event.event_id_smi %></p>
+        <p>Program Type : <%= @event.event_type %></p>
 
         <p>Speaker : <%= @event.speaker_name %></p>
 
@@ -38,8 +38,15 @@
         <p>Event Date : <%= @event.event_date %></p>
 
         <!--<p>Event Time : 10.00 PM</p>-->
-
         <p>Event State : <%= @event.event_state %></p>
+        <p>Event City : <%= @event.event_city %></p>
+
+        <p>Speaker State : <%= @event.speaker_state %></p>
+
+        <p>Speaker City : <%= @event.speaker_city %></p>
+
+        <p>Travel : <%= @event.speaker_travel_required? ? "Yes" : "NO" %></p>
+
       </div>
       <!-- left -->
 

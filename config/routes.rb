@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "expense/index"
+
   get "sign_in_sheet/index"
 
   get "events/index"
@@ -6,7 +8,10 @@ Rails.application.routes.draw do
   get "sign_in_sheet/sign_in_sheet"
   post "sign_in_sheet/add_sign_in_sheet"
   patch "/sign_in_sheet/add_sign_in_sheet"
+  get "expense/manage_event"
   get "events/compliance"
+  post "/expense/add_event_details"
+  patch "/expense/add_event_details"
   devise_for :users
   get "welcome/index"
   resource :event do

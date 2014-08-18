@@ -27,7 +27,7 @@
             <label for="smi_id">Program Name</label>
             <!-- <input id="smi_id" type="text" class="form-control" placeholder="Event ID e.g. 1234"> -->
             <br>
-            <%= f.select :event_id_smi, EventsHelper::Programme_name, :id => "program_type" %>
+            <%= f.select :event_id_smi, EventsHelper::Programme_name, :id => "program_type",:prompt => 'Select' %>
           </div>
         </td>
       </tr>
@@ -58,7 +58,7 @@
               <td width="50%">
                 <div class="form-group">
                   <label for="event_type">Event Type</label><br>
-                  <%= f.select :event_type, EventsHelper::Event_type %>
+                  <%= f.select :event_type, EventsHelper::Event_type ,:prompt => 'Select' %>
                 </div>
               </td>
               <td class="padding-left">
@@ -75,7 +75,7 @@
         <td>
           <div class="form-group">
             <label for="quarter">Quarter</label><br>
-            <%= f.select :quarter, EventsHelper::Quarter_arr %>
+            <%= f.select :quarter, EventsHelper::Quarter_arr ,:prompt => 'Select' %>
           </div>
         </td>
       </tr>
@@ -94,7 +94,7 @@
               <td class="padding-left">
                 <div class="form-group">
                   <label for="us_states">Event State</label><br>
-                  <%= f.select :event_state, EventsHelper::Usstates %>
+                  <%= f.select :event_state, EventsHelper::Usstates ,:prompt => 'Select' %>
                 </div>
               </td>
             </tr>
@@ -116,7 +116,7 @@
               <td class="padding-left">
                 <div class="form-group">
                   <label for="speaker_states">Speaker State</label><br>
-                  <%= f.select :speaker_state, EventsHelper::Usstates %>
+                  <%= f.select :speaker_state, EventsHelper::Usstates ,:prompt => 'Select' %>
                 </div>
               </td>
             </tr>

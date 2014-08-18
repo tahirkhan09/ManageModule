@@ -4,7 +4,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.integer :serial_number
       t.string :expense_type
       t.string :amount
-      t.datetime :value_transfer_date
+      t.string :value_transfer_date
       t.string :payment_mode
       t.string :notes
       t.string :av_notes

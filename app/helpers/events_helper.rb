@@ -2,6 +2,8 @@ module EventsHelper
   Quarter_arr = [['1', 1], ['2', 2], ['3', 3], ['4', 4]]
   Event_type = [['SP','SP'],['LCDEXC','LCDEXC']]
   Programme_name = [['Programme 1','Programme 1'],['Programme 2','Programme 2'],['Programme 3','Programme 3'],['Programme 4','Programme 4'],['Programme 5','Programme 5']]
+  Expense = [['Expense 1','Expense 1'],['Expense 2','Expense 2'],['Expense 3','Expense 3'],['Expense 4','Expense 4'],['Expense 5','Expense 5']]
+  Payment_mode = [['Payment 1','Payment 1'],['Payment 2','Payment 2'],['Payment 3','Payment 3'],['Payment 4','Payment 4'],['Payment 5','Payment 5']]
   Event_month = [['January', 1], ['February', 2], ['March', 3], ['April', 4],['May', 5],['June', 6],['July', 7],['August', 8],['September', 9],['October', 10],['November', 11],['December', 12]]
   Usstates =[
                 ['Alabama', 'Alabama'],
