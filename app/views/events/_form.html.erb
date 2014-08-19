@@ -1,17 +1,16 @@
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <!--<title>Create Event</title>-->
-   <!--CDN-based stylesheet references for Kendo UI Web-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet"/>-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet"/>-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet"/>-->
-  <!--&lt;!&ndash; CDN-based script reference for Kendo UI &ndash;&gt;-->
-  <!--<script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>-->
-</head>
+<%= form_for @event do |f|%>
+    <% if @event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, "error") %> prohibited
+          this event from being saved:</h2>
+        <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
 
-
-<%= form_for @event, url: event_path  do |f|%>
     <table width="100%" cellspacing="0" cellpadding="0" border="0" class="create_evt">
       <tbody>
       <tr>

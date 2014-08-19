@@ -1,19 +1,6 @@
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <!--<title>Create Event</title>-->
-   <!--CDN-based stylesheet references for Kendo UI Web-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet"/>-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet"/>-->
-  <!--<link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet"/>-->
-  <!--&lt;!&ndash; CDN-based script reference for Kendo UI &ndash;&gt;-->
-  <!--<script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>-->
-</head>
-
 <h1 class="title">Event List</h1>
 <div class="filters">
 <div class="head_left">
-<!-- Filters :  -->
 <span style="" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" value="09/01/2014" id="from-datepicker" data-role="datepicker" style="" class="k-input" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="from-datepicker_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is Monday, September 01, 2014"><span class="k-select" unselectable="on" role="button" aria-controls="from-datepicker_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
 <span style="" class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input type="text" value="09/01/2015" id="to-datepicker" data-role="datepicker" style="" class="k-input" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="to-datepicker_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is Tuesday, September 01, 2015"><span class="k-select" unselectable="on" role="button" aria-controls="to-datepicker_dateview"><span class="k-icon k-i-calendar" unselectable="on">select</span></span></span></span>
 </div>
@@ -43,11 +30,11 @@
       <td><%= event.event_type %></td>
       <td><%= event.speaker_name %></td>
       <!--<td><%#= link_to "Edit",edit_event_path(event), :class => 'label label-warning' %></td>-->
-      <!--<td><%#= link_to "Delete", event_path(event),:method => :delete, :data => {:confirm => "Are You Sure!!"}, :class => 'label label-warning' %></td>-->
+      <!--<td><%#= link_to "Delete", event_path(event),:method => :delete, :data => {:confirm => "Are You Sure!!"}, :class => 'label label-del' %></td>-->
       <td><a href="/expense/manage_event?id=<%= event.id %>">ME</a></td>
       <td><a href="/sign_in_sheet/sign_in_sheet?id=<%= event.id %>">SI</a></td>
       <td><a href="/events/compliance?id=<%= event.id %>">C</a></td>
-      <td>T</td>
+      <td><img src="<%= event.speaker_travel_required? ? "/assets/travel2.1.png" : "/assets/travel26.png" %>"></td>
       <td><i class="fa fa-lock"></i></td>
     </tr>
     <%end%>
@@ -62,5 +49,9 @@ $("#event_event_state, #event_speaker_state, #event_event_type, #event_quarter, 
 <style>
     #Conf_table_previous {
         margin: 0px 25px 0px 0px;
+    }
+    .label-del
+    {
+        background-color: #ff2d2d
     }
 </style>

@@ -1,33 +1,18 @@
-<!DOCTYPE html>
-
-<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Compliance</title>
-  <!-- CDN-based stylesheet references for Kendo UI Web -->
-  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.common.min.css" rel="stylesheet"/>
-  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.rtl.min.css" rel="stylesheet"/>
-  <link href="http://cdn.kendostatic.com/2013.3.1119/styles/kendo.silver.min.css" rel="stylesheet"/>
-  <!-- CDN-based script reference for Kendo UI -->
-  <script src="http://cdn.kendostatic.com/2013.3.1119/js/kendo.all.min.js"></script>
-
-
 </head>
 <body>
-<div class="wrapper">
   <div class="content">
-
     <div class="content_wrapper">
-
       <h1 class="title">Compliance</h1>
       <% @event = Event.find(params[:id]) %>
-
       <p class="info-icons">
+        <% if $meal_cost_per_attendee < 150 %>
         <span class="compliances">Compliant</span>
+            <% else %>
         <span class="non-compliances">Non-compliant</span>
+            <% end %>
       </p>
-
       <div class="left">
         <p>Event ID DLP : <%= @event.event_id_dlp %></p>
 
@@ -55,16 +40,18 @@
       <div class="right">
 
         <div class="sign_in compliance">
+               <% @event_compliance = Event.find(params[:id]) %>
 
-
+          <%= form_for @event_compliance, :url => "add_compliance" do |f|%>
           <table class="notes_holder" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
-                <textarea class="form-control" rows="5">Notes</textarea>
+                <%= f.text_area :compliance_notes, :placeholder => "Notes", :class => "form-control", :id => "" %>
+                <!--<textarea class="form-control" rows="5">Notes</textarea>-->
               </td>
 
             </tr>
-
+            <%= hidden_field_tag :event_id, @event.id %>
 
           </table>
           <!-- Notes -->
@@ -73,46 +60,86 @@
           <table border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>Total Attendees</td>
-              <td><input type="text" class="form-control" placeholder="From sign in sheet"></td>
+              <td>
+                <% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
+                <%#= @sign_in.inspect %>
+                <% if @sign_in.present? %>
+                <% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
+                    <% end %>
+                <%= text_field_tag :total_attendee, (total.present? ? total : ""), :class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
+              </td>
             </tr>
 
             <tr>
               <td>Final Guarantee $</td>
-              <td><input type="text" class="form-control" placeholder="From sign in sheet"></td>
+              <td>
+                <%= text_field_tag :final_gurantee,(@event.final_gurantee.present? ? @event.final_gurantee : ""), :class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
+              </td>
             </tr>
 
             <tr>
               <td>Final Guarantee Count</td>
-              <td><input type="text" class="form-control" placeholder="From sign in sheet"></td>
+              <td>
+                <%= text_field_tag :final_gurantee_count,(@event.final_gurantee_count.present? ? @event.final_gurantee_count : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
+              </td>
             </tr>
             <tr>
               <td>Total F&B Cost</td>
-              <td><input type="text" class="form-control" placeholder="From sign in sheet"></td>
+              <td>
+                <% total_fb_cost =  @event.expenses %>
+                     <% sum_of_total_fb_cost = "0" %>
+                <% total_fb_cost.each do |a| %>
+                <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
+                    <% end %>
+                <%= text_field_tag :sum_of_total_fb_cost,(sum_of_total_fb_cost.present? ? sum_of_total_fb_cost : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
+              </td>
             </tr>
             <tr>
               <td>NS HCP #</td>
-              <td><input type="text" class="form-control" placeholder="Calculated"></td>
+              <td>
+                <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
+                <%= text_field_tag :ns_hcp_1,(ns_hcp_1.present? ? ns_hcp_1 : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="Calculated">-->
+              </td>
             </tr>
             <tr>
               <td>NS HCP $</td>
-              <td><input type="text" class="form-control" placeholder="Calculated"></td>
+              <td>
+                <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
+                <%= text_field_tag :ns_hcp_2,(ns_hcp_2.present? ? ns_hcp_2 : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="Calculated">-->
+              </td>
             </tr>
             <tr>
-              <td>Net Meal Cost (excluding NH HCP)</td>
-              <td><input type="text" class="form-control" placeholder="Calculated"></td>
+              <td>Net Meal Cost </td>
+              <td>
+                <% net_meal_cost = sum_of_total_fb_cost-ns_hcp_2 %>
+                <%= text_field_tag :net_meal_cost,(net_meal_cost.present? ? net_meal_cost : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="Calculated">-->
+              </td>
             </tr>
             <tr>
-              <td>Meal Cost/Attire</td>
-              <td><input type="text" class="form-control" placeholder="Calculated"></td>
+              <td>Meal Cost/Attendee</td>
+              <td>
+                <% $meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
+                <%= text_field_tag :meal_cost_per_attendee,($meal_cost_per_attendee.present? ? $meal_cost_per_attendee : ""),:class => "form-control", :id => "" %>
+                <!--<input type="text" class="form-control" placeholder="Calculated">-->
+              </td>
             </tr>
 
           </table>
 
 
           <footer>
-            <button type="button" class="btn btn-primary  ">Save</button>
+            <%= f.submit "Save", :class=>"btn btn-primary" %>
+            <!--<button type="button" class="btn btn-primary  ">Save</button>-->
             <a class="btn btn-primary " href="/events/index">Back</a>
           </footer>
+              <% end %>
 
 
         </div>
@@ -130,7 +157,7 @@
   </div>
   <!-- content_wrapper ends -->
 
-</div>
+<!--</div>-->
 <!-- wrapper ends -->
 
 
@@ -149,4 +176,3 @@
 
 </body>
 
-</html>

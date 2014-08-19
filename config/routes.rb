@@ -12,9 +12,14 @@ Rails.application.routes.draw do
   get "events/compliance"
   post "/expense/add_event_details"
   patch "/expense/add_event_details"
+  post "/events/add_compliance"
   devise_for :users
   get "welcome/index"
-  resource :event do
+  resources :events do
+    collection do
+
+    end
+
 
   end
 

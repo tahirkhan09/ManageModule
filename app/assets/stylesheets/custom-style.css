@@ -109,7 +109,7 @@ border-bottom: 1px solid #cdcdcd;
 .left {
     float: left;
     width: 25%;
-    background: url(images/body_bg.gif) repeat-y;
+    background: url(/assets/body_bg.gif) repeat-y;
     padding-top: 20px;
 }
 

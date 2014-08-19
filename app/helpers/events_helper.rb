@@ -1,9 +1,9 @@
 module EventsHelper
   Quarter_arr = [['1', 1], ['2', 2], ['3', 3], ['4', 4]]
   Event_type = [['SP','SP'],['LCDEXC','LCDEXC']]
-  Programme_name = [['Programme 1','Programme 1'],['Programme 2','Programme 2'],['Programme 3','Programme 3'],['Programme 4','Programme 4'],['Programme 5','Programme 5']]
-  Expense = [['Expense 1','Expense 1'],['Expense 2','Expense 2'],['Expense 3','Expense 3'],['Expense 4','Expense 4'],['Expense 5','Expense 5']]
-  Payment_mode = [['Payment 1','Payment 1'],['Payment 2','Payment 2'],['Payment 3','Payment 3'],['Payment 4','Payment 4'],['Payment 5','Payment 5']]
+  Programme_name = [['Galderma Epiduo SP','Galderma Epiduo SP'],['Galderma Epiduo LCD','Galderma Epiduo LCD'],['Mediscience Epiduo SP','Mediscience Epiduo SP'],['Mediscience Epiduo LCD','Mediscience Epiduo LCD'],['Galderma Cetaphil SP','Galderma Cetaphil SP'],['Theracutix Combined SP','Theracutix Combined SP'],['Theracutix Combined LCD','Theracutix Combined LCD'],['Theracutix Cetaphil SP','Theracutix Cetaphil SP'],['Mediscience Mirvaso SP','Mediscience Mirvaso SP'],['Mediscience Mirvaso LCD','Mediscience Mirvaso LCD']]
+  Expense = [['Meals (Deposit)','Meals (Deposit)'],['Meals','Meals'],['Meals_2','Meals_2'],['Room Rental','Room Rental'],['A/V Venue','A/V Venue'],['A/V third party','A/V third party'],['Airfare','Airfare'],['Lodging','Lodging'],['AMEX Service Charge','AMEX Service Charge'],['Ground Transportation','Ground Transportation']]
+  Payment_mode = [['AMEX-71026','AMEX-71026'],['CAP1-3612','CAP1-3612'],['WF-7727','WF-7727']]
   Event_month = [['January', 1], ['February', 2], ['March', 3], ['April', 4],['May', 5],['June', 6],['July', 7],['August', 8],['September', 9],['October', 10],['November', 11],['December', 12]]
   Usstates =[
                 ['Alabama', 'Alabama'],
