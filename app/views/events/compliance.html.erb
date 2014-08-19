@@ -15,7 +15,7 @@
         <% end %>
         <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
         <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
-        <% net_meal_cost = sum_of_total_fb_cost-ns_hcp_2 %>
+        <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) %>
         <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
 
 
