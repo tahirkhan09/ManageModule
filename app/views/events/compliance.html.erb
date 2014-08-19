@@ -7,11 +7,17 @@
       <h1 class="title">Compliance</h1>
       <% @event = Event.find(params[:id]) %>
       <p class="info-icons">
-        <% if $meal_cost_per_attendee < 150 %>
+          <% unless $meal_cost_per_attendee.blank? %>
+            <%= "123" %>
+        <% if $meal_cost_per_attendee.to_f < 150 %>
         <span class="compliances">Compliant</span>
             <% else %>
         <span class="non-compliances">Non-compliant</span>
             <% end %>
+            <% else %>
+        <%= "456" %>
+            <% end %>
+
       </p>
       <div class="left">
         <p>Event ID DLP : <%= @event.event_id_dlp %></p>
