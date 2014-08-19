@@ -2,20 +2,37 @@
   <title>Compliance</title>
 </head>
 <body>
+<% @event = Event.find(params[:id]) %>
+<% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
+<%#= @sign_in.inspect %>
+<% if @sign_in.present? %>
+<% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
+    <% end %>
+    <% total_fb_cost =  @event.expenses %>
+         <% sum_of_total_fb_cost = "0" %>
+    <% total_fb_cost.each do |a| %>
+    <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
+        <% end %>
+        <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
+        <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
+        <% net_meal_cost = sum_of_total_fb_cost-ns_hcp_2 %>
+        <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
+
+
+
   <div class="content">
     <div class="content_wrapper">
       <h1 class="title">Compliance</h1>
-      <% @event = Event.find(params[:id]) %>
       <p class="info-icons">
-          <% unless $meal_cost_per_attendee.blank? %>
-            <%= "123" %>
-        <% if $meal_cost_per_attendee.to_f < 150 %>
+          <% unless meal_cost_per_attendee.blank? %>
+
+        <% if meal_cost_per_attendee.to_f < 150 %>
         <span class="compliances">Compliant</span>
             <% else %>
         <span class="non-compliances">Non-compliant</span>
             <% end %>
             <% else %>
-        <%= "456" %>
+
             <% end %>
 
       </p>
@@ -67,11 +84,6 @@
             <tr>
               <td>Total Attendees</td>
               <td>
-                <% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
-                <%#= @sign_in.inspect %>
-                <% if @sign_in.present? %>
-                <% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
-                    <% end %>
                 <%= text_field_tag :total_attendee, (total.present? ? total : ""), :class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
               </td>
@@ -95,11 +107,6 @@
             <tr>
               <td>Total F&B Cost</td>
               <td>
-                <% total_fb_cost =  @event.expenses %>
-                     <% sum_of_total_fb_cost = "0" %>
-                <% total_fb_cost.each do |a| %>
-                <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
-                    <% end %>
                 <%= text_field_tag :sum_of_total_fb_cost,(sum_of_total_fb_cost.present? ? sum_of_total_fb_cost : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="From sign in sheet">-->
               </td>
@@ -107,7 +114,6 @@
             <tr>
               <td>NS HCP #</td>
               <td>
-                <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
                 <%= text_field_tag :ns_hcp_1,(ns_hcp_1.present? ? ns_hcp_1 : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
@@ -115,7 +121,6 @@
             <tr>
               <td>NS HCP $</td>
               <td>
-                <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
                 <%= text_field_tag :ns_hcp_2,(ns_hcp_2.present? ? ns_hcp_2 : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
@@ -123,7 +128,6 @@
             <tr>
               <td>Net Meal Cost </td>
               <td>
-                <% net_meal_cost = sum_of_total_fb_cost-ns_hcp_2 %>
                 <%= text_field_tag :net_meal_cost,(net_meal_cost.present? ? net_meal_cost : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
@@ -131,8 +135,7 @@
             <tr>
               <td>Meal Cost/Attendee</td>
               <td>
-                <% $meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
-                <%= text_field_tag :meal_cost_per_attendee,($meal_cost_per_attendee.present? ? $meal_cost_per_attendee : ""),:class => "form-control", :id => "" %>
+                <%= text_field_tag :meal_cost_per_attendee,(meal_cost_per_attendee.present? ? $meal_cost_per_attendee : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
             </tr>
