@@ -126,7 +126,7 @@
                           <th scope="col">Notes</th>
                         </tr>
                         <% 10.times do |a| %>
-                            <%= f.fields_for :expenses, f.object.expenses(:order=>"id ASC").build do |expense,index| %>
+                            <%= f.fields_for :expenses, f.object.expenses(:order=>"created_at ASC").build do |expense,index| %>
 
                         <tr>
                           <td><%= a+1 %></td>
