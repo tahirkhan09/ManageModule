@@ -26,27 +26,27 @@ class EventsController < ApplicationController
 
   end
 
-  def update
-      @event = Event.find(params[:id])
-      if @event.update(params_event)
-        flash[:success] = 'Conference Has Been Updated Successfully'
-        redirect_to events_index_path
-      else
-        render "edit"
-      end
-    end
+  #def update
+  #    @event = Event.find(params[:id])
+  #    if @event.update(params_event)
+  #      flash[:success] = 'Conference Has Been Updated Successfully'
+  #      redirect_to events_index_path
+  #    else
+  #      render "edit"
+  #    end
+  #  end
 
 
-  def destroy
-    @event = Event.find(params[:id])
-    if @event.delete
-      redirect_to events_index_path
-    end
-  end
+  #def destroy
+  #  @event = Event.find(params[:id])
+  #  if @event.delete
+  #    redirect_to events_index_path
+  #  end
+  #end
 
-def edit
-  @event = Event.find(params[:id])
-end
+#def edit
+#  @event = Event.find(params[:id])
+#end
 
   def add_compliance
     puts "000000000000000000000000000",params.inspect

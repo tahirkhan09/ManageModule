@@ -15,8 +15,8 @@
         <% end %>
         <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
         <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
-        <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) %>
-        <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
+        <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) unless ns_hcp_2.to_s == "NaN"%>
+        <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f unless net_meal_cost.to_s == "NaN"%>
 
 
 
@@ -26,7 +26,7 @@
       <p class="info-icons">
           <% unless meal_cost_per_attendee.blank? %>
 
-        <% if meal_cost_per_attendee.to_f < 150 %>
+        <% if meal_cost_per_attendee.to_f < 150 || meal_cost_per_attendee.to_s == "NaN"%>
         <span class="compliances">Compliant</span>
             <% else %>
         <span class="non-compliances">Non-compliant</span>
@@ -37,25 +37,25 @@
 
       </p>
       <div class="left">
-        <p>Event ID DLP : <%= @event.event_id_dlp %></p>
+        <p>Event ID DLP: <%= @event.event_id_dlp %></p>
 
-        <p>Program Type : <%= @event.event_type %></p>
+        <p>Program Type: <%= @event.event_type %></p>
 
-        <p>Speaker : <%= @event.speaker_name %></p>
+        <p>Speaker: <%= @event.speaker_name %></p>
 
-        <p>Rep : <%= @event.rep_name %></p>
+        <p>Rep: <%= @event.rep_name %></p>
 
-        <p>Event Date : <%= @event.event_date %></p>
+        <p>Event Date: <%= @event.event_date %></p>
 
         <!--<p>Event Time : 10.00 PM</p>-->
-        <p>Event State : <%= @event.event_state %></p>
-        <p>Event City : <%= @event.event_city %></p>
+        <p>Event State: <%= @event.event_state %></p>
+        <p>Event City: <%= @event.event_city %></p>
 
-        <p>Speaker State : <%= @event.speaker_state %></p>
+        <p>Speaker State: <%= @event.speaker_state %></p>
 
-        <p>Speaker City : <%= @event.speaker_city %></p>
+        <p>Speaker City: <%= @event.speaker_city %></p>
 
-        <p>Travel : <%= @event.speaker_travel_required? ? "Yes" : "NO" %></p>
+        <p>Travel: <%= @event.speaker_travel_required? ? "Yes" : "NO" %></p>
 
       </div>
       <!-- left -->
@@ -63,9 +63,7 @@
       <div class="right">
 
         <div class="sign_in compliance">
-               <% @event_compliance = Event.find(params[:id]) %>
-
-          <%= form_for @event_compliance, :url => "add_compliance" do |f|%>
+          <%= form_for :event, :url => "add_compliance" do |f|%>
           <table class="notes_holder" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
@@ -128,6 +126,7 @@
             <tr>
               <td>Net Meal Cost </td>
               <td>
+
                 <%= text_field_tag :net_meal_cost,(net_meal_cost.present? ? net_meal_cost : ""),:class => "form-control", :id => "" %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>

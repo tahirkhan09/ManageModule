@@ -9,6 +9,7 @@
     <%= link_to "Report",new_event_path, :class => 'btn btn-primary' , :style=> "float:right;margin:0 3px 0 0;"%>
 </div>
 </div>
+
 <div class="event_list">
   <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
     <tbody>
@@ -33,7 +34,30 @@
       <!--<td><%#= link_to "Delete", event_path(event),:method => :delete, :data => {:confirm => "Are You Sure!!"}, :class => 'label label-del' %></td>-->
       <td><a href="/expense/manage_event?id=<%= event.id %>">ME</a></td>
       <td><a href="/sign_in_sheet/sign_in_sheet?id=<%= event.id %>">SI</a></td>
+      <!---->
+      <% @sign_in = SignInSheet.where(:event_id => event.id).first %>
+      <% if @sign_in.present? %>
+      <% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
+          <% end %>
+          <% total_fb_cost =  event.expenses %>
+               <% sum_of_total_fb_cost = "0" %>
+          <% total_fb_cost.each do |a| %>
+          <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
+              <% end %>
+              <% ns_hcp_1 = event.final_gurantee.to_f - total.to_f %>
+              <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
+              <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) %>
+              <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
+      <!---->
+      <% unless meal_cost_per_attendee.blank? %>
+          <% if meal_cost_per_attendee.to_f < 150 || meal_cost_per_attendee.to_s == "NaN"%>
+          <td><a href="/events/compliance?id=<%= event.id %>" style="color: green">C</a></td>
+              <% else %>
+          <td><a href="/events/compliance?id=<%= event.id %>" style="color: red">C</a></td>
+              <% end %>
+          <% else %>
       <td><a href="/events/compliance?id=<%= event.id %>">C</a></td>
+          <% end %>
 
       <td><img src="<%= event.speaker_travel_required? ? "/assets/travel2.1-478d7bd7e946a4add86037f8f0db19b3.png" : "/assets/travel26-075dd01fd9d8c789a2b04dc8bc380bb9.png" %>"></td>
 
