@@ -36,18 +36,19 @@
       <td><a href="/sign_in_sheet/sign_in_sheet?id=<%= event.id %>">SI</a></td>
       <!---->
       <% @sign_in = SignInSheet.where(:event_id => event.id).first %>
+      <%#= @sign_in.inspect %>
       <% if @sign_in.present? %>
       <% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
           <% end %>
-          <% total_fb_cost =  event.expenses %>
+          <% total_fb_cost =  event.expenses.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2') %>
                <% sum_of_total_fb_cost = "0" %>
           <% total_fb_cost.each do |a| %>
           <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
               <% end %>
               <% ns_hcp_1 = event.final_gurantee.to_f - total.to_f %>
-              <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/event.final_gurantee_count.to_f).to_f*ns_hcp_1 %>
-              <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) %>
-              <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f %>
+              <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/event.final_gurantee_count.to_f).to_f*ns_hcp_1 unless event.final_gurantee_count.blank? %>
+              <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) unless ns_hcp_2.to_s == "NaN" unless ns_hcp_2.blank?%>
+              <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f unless net_meal_cost.to_s == "NaN"%>
       <!---->
       <% unless meal_cost_per_attendee.blank? %>
           <% if meal_cost_per_attendee.to_f < 150 || meal_cost_per_attendee.to_s == "NaN"%>

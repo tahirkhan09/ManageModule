@@ -243,12 +243,12 @@
                 <td></td>
                 <td align="right"><strong>Total</strong></td>
                 <td>
-                  <% total =  @event.expenses %>
+                  <% total =  @event.expenses.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2') %>
                        <% sum = "0" %>
                   <% total.each do |a| %>
                   <% sum =  sum.to_i + a.amount.to_i %>
                       <% end %>
-                  <%= text_field_tag :total_amount, (sum.present? ? sum : ""), :class => "form-control", :id => "" , :disabled=>true%>
+                  <%= text_field_tag :total_amount, (sum.present? ? sum : ""), :class => "form-control", :id => "" , :disabled=>true %>
                   <!--<input type="text" class="form-control">-->
                 </td>
               </tr>
