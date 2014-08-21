@@ -179,7 +179,7 @@
                            <th scope="col">Payment By</th>
                            <th scope="col">Notes</th>
                          </tr>
-                         <%= f.fields_for :expenses, f.object.expenses.order("id ASC").each do |expense,index| %>
+                         <%= f.fields_for :expenses, f.object.expenses.sort_by{|a|a.id}.each do |expense,index| %>
 
                          <tr>
                            <%#= expense.object.id %>
