@@ -4,271 +4,272 @@
 <body>
 <!--<div class="wrapper">-->
 
-  <div class="content">
-    <div class="content_wrapper">
+<div class="content">
+<div class="content_wrapper">
 
-      <h1 class="title">Manage Events</h1>
-      <% @event = Event.find(params[:id]) %>
+<h1 class="title">Manage Events</h1>
+<% @event = Event.find(params[:id]) %>
 
-      <div class="left">
-        <p>Event ID DLP: <%= @event.event_id_dlp %></p>
+<div class="left">
+  <p>Event ID DLP: <%= @event.event_id_dlp %></p>
 
-        <p>Program Type: <%= @event.event_type %></p>
+  <p>Program Type: <%= @event.event_type %></p>
 
-        <p>Speaker: <%= @event.speaker_name %></p>
+  <p>Speaker: <%= @event.speaker_name %></p>
 
-        <p>Rep: <%= @event.rep_name %></p>
+  <p>Rep: <%= @event.rep_name %></p>
 
-        <p>Event Date: <%= @event.event_date %></p>
-        <!--<p>Event Time : 10.00 PM</p>-->
-        <p>Event State:  <%= @event.event_state %></p>
+  <p>Event Date: <%= @event.event_date %></p>
+  <!--<p>Event Time : 10.00 PM</p>-->
+  <p>Event State:  <%= @event.event_state %></p>
 
-        <p>Event City: <%= @event.event_city %></p>
+  <p>Event City: <%= @event.event_city %></p>
 
-        <p>Speaker State: <%= @event.speaker_state %></p>
+  <p>Speaker State: <%= @event.speaker_state %></p>
 
-        <p>Speaker City: <%= @event.speaker_city %></p>
+  <p>Speaker City: <%= @event.speaker_city %></p>
 
-        <p>Travel: <%= @event.speaker_travel_required? ? "Yes" : "NO" %></p>
-      </div>
-      <!-- left -->
+  <p>Travel: <%= @event.speaker_travel_required? ? "Yes" : "NO" %></p>
+</div>
+<!-- left -->
 
-      <div class="right">
+<div class="right">
 
-        <div class="manage_events">
-          <% @add_event_details = @event %>
-          <%= form_for @event, :url => "/expense/add_event_details" do |f| %>
-              <table class="notes_holder" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td>
-                    <%= hidden_field_tag :event_id, @event.id %>
-                    <%= f.text_area :av_notes, :class => "form-control", :id => "", :placeholder => "Notes (A/V)" %>
-                    <!--<textarea class="form-control" rows="5">Notes (A/V)</textarea>-->
-                  </td>
-                  <td>
-                    <%= f.text_area :venue_notes, :class => "form-control", :id => "", :placeholder => "Notes (Venue)" %>
-                    <!--<textarea class="form-control" rows="5">Notes (Venue)</textarea>-->
-                  </td>
-                </tr>
+<div class="manage_events">
+<% @add_event_details = @event %>
+<%= form_for @event, :url => "/expense/add_event_details" do |f| %>
+    <table class="notes_holder" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <%= hidden_field_tag :event_id, @event.id %>
+          <%= f.text_area :av_notes, :class => "form-control", :id => "", :placeholder => "Notes (A/V)" %>
+          <!--<textarea class="form-control" rows="5">Notes (A/V)</textarea>-->
+        </td>
+        <td>
+          <%= f.text_area :venue_notes, :class => "form-control", :id => "", :placeholder => "Notes (Venue)" %>
+          <!--<textarea class="form-control" rows="5">Notes (Venue)</textarea>-->
+        </td>
+      </tr>
 
-                <tr>
-                  <td>
+      <tr>
+        <td>
 
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td>Final Guarantee ($)</td>
-                        <td>
-                          <%= f.text_field :final_gurantee, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Final Guarantee (Count)</td>
-                        <td>
-                          <%= f.text_field :final_gurantee_count, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Venue Name</td>
-                        <td>
-                          <%= f.text_field :venue_name, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                    </table>
-
-                  </td>
-                  <td>
-
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td>Venue Address</td>
-                        <td>
-                          <%= f.text_field :venue_address, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Venue Contact Name</td>
-                        <td>
-                          <%= f.text_field :venue_contact_name, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Venue Contact #</td>
-                        <td>
-                          <%= f.text_field :venue_contact, :class => "form-control", :id => "" %>
-                          <!--<input id="dlp_id" type="text" class="form-control">-->
-                        </td>
-                      </tr>
-                    </table>
-
-
-                  </td>
-                </tr>
-
-
-              </table>
-
-              <!-- Notes -->
-              <% if @event.expenses.blank? %>
-
-                      <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
-
-                        <tr>
-                          <th scope="col">Sr.No.</th>
-                          <th scope="col">Expense Type</th>
-                          <th scope="col">$</th>
-                          <th scope="col">Value Transfer Date</th>
-                          <th scope="col">Payment By</th>
-                          <th scope="col">Notes</th>
-                        </tr>
-                        <% 10.times do |a| %>
-                            <%= f.fields_for :expenses, f.object.expenses(:order=>"created_at ASC").build do |expense,index| %>
-
-                        <tr>
-                          <td><%= a+1 %></td>
-                          <td>
-                            <%= expense.select :expense_type, EventsHelper::Expense, :class => "expense_type" ,:prompt => 'Select' %>
-                            <!--<select id="expense1">-->
-                            <!--<option>Expense 1</option>-->
-                            <!--<option>Expense 1</option>-->
-                            <!--<option>Expense 3</option>-->
-                            <!--<option>Expense 4</option>-->
-                            <!--</select>-->
-
-                          </td>
-                          <td width="15%">
-                            <%= expense.text_field :amount, :class => "form-control", :id => "" %>
-                            <!--<input type="text" class="form-control"/>-->
-                          </td>
-                          <td>
-                            <%= expense.text_field :value_transfer_date, :placeholder => "Date", :id => "datetimepicker" %>
-                            <!--<input id="vtd-datepicker" value="09/01/2014"/>-->
-                          </td>
-                          <td>
-                            <%= expense.select :payment_mode, EventsHelper::Payment_mode, :class => "payment_type" ,:prompt => 'Select' %>
-                            <!--<select id="paymentBy">-->
-                            <!--<option>Payment 1</option>-->
-                            <!--<option>Payment 1</option>-->
-                            <!--<option>Payment 3</option>-->
-                            <!--<option>Payment 4</option>-->
-                            <!--</select>-->
-
-                          </td>
-                          <td>
-                            <%= expense.text_area :notes, :class => "form-control", :id => "", :placeholder => "Notes" %>
-                            <!--<textarea class="form-control" rows="1"></textarea>-->
-
-                          </td>
-                        </tr>
-                            <% end %>
-                                    <% end %>
-                      </table>
-
-
-                  <% else %>
-                       <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
-                         <tr>
-                           <th scope="col">Sr.No.</th>
-                           <th scope="col">Expense Type</th>
-                           <th scope="col">$</th>
-                           <th scope="col">Value Transfer Date</th>
-                           <th scope="col">Payment By</th>
-                           <th scope="col">Notes</th>
-                         </tr>
-                         <%= f.fields_for :expenses, f.object.expenses.each do |expense,index| %>
-
-                         <tr>
-                           <%#= expense.object.id %>
-                           <td><%= expense.object.id %></td>
-                           <td>
-                             <%= expense.select :expense_type, EventsHelper::Expense, :class => "expense_type" ,:prompt => 'Select'  %>
-                             <!--<select id="expense1">-->
-                             <!--<option>Expense 1</option>-->
-                             <!--<option>Expense 1</option>-->
-                             <!--<option>Expense 3</option>-->
-                             <!--<option>Expense 4</option>-->
-                             <!--</select>-->
-
-                           </td>
-                           <td width="15%">
-                             <%= expense.text_field :amount, :class => "form-control", :id => "" %>
-                             <!--<input type="text" class="form-control"/>-->
-                           </td>
-                           <td>
-                             <%= expense.text_field :value_transfer_date, :placeholder => "Date", :id => "datetimepicker" %>
-                             <!--<input id="vtd-datepicker" value="09/01/2014"/>-->
-                           </td>
-                           <td>
-                             <%= expense.select :payment_mode, EventsHelper::Payment_mode,:class => "payment_type",:prompt => 'Select'%>
-                             <!--<select id="paymentBy">-->
-                             <!--<option>Payment 1</option>-->
-                             <!--<option>Payment 1</option>-->
-                             <!--<option>Payment 3</option>-->
-                             <!--<option>Payment 4</option>-->
-                             <!--</select>-->
-
-                           </td>
-                           <td>
-                             <%= expense.text_area :notes, :class => "form-control", :id => "text_area", :placeholder => "Notes",:style => "margin:0px 0px 0px 0px;height:50px" %>
-                             <!--<textarea class="form-control" rows="1"></textarea>-->
-
-                           </td>
-                         </tr>
-                         <% end %>
-                       </table>
-
-
-                  <%end%>
-            <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
-
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td align="right"><strong>Total</strong></td>
+              <td>Final Guarantee ($)</td>
+              <td>
+                <%= f.text_field :final_gurantee, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+            <tr>
+              <td>Final Guarantee (Count)</td>
+              <td>
+                <%= f.text_field :final_gurantee_count, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+            <tr>
+              <td>Venue Name</td>
+              <td>
+                <%= f.text_field :venue_name, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+          </table>
+
+        </td>
+        <td>
+
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>Venue Address</td>
+              <td>
+                <%= f.text_field :venue_address, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+            <tr>
+              <td>Venue Contact Name</td>
+              <td>
+                <%= f.text_field :venue_contact_name, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+            <tr>
+              <td>Venue Contact #</td>
+              <td>
+                <%= f.text_field :venue_contact, :class => "form-control", :id => "" %>
+                <!--<input id="dlp_id" type="text" class="form-control">-->
+              </td>
+            </tr>
+          </table>
+
+
+        </td>
+      </tr>
+
+
+    </table>
+
+    <!-- Notes -->
+    <% if @event.expenses.blank? %>
+
+        <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+          <tr>
+            <th scope="col">Sr.No.</th>
+            <th scope="col">Expense Type</th>
+            <th scope="col">$</th>
+            <th scope="col">Value Transfer Date</th>
+            <th scope="col">Payment By</th>
+            <th scope="col">Notes</th>
+          </tr>
+          <% 10.times do |a| %>
+              <%= f.fields_for :expenses, f.object.expenses.build do |expense, index| %>
+
+                  <tr>
+                    <td><%= a+1 %></td>
+                    <td>
+                      <%= expense.select :expense_type, EventsHelper::Expense, :class => "expense_type", :prompt => 'Select' %>
+                      <!--<select id="expense1">-->
+                      <!--<option>Expense 1</option>-->
+                      <!--<option>Expense 1</option>-->
+                      <!--<option>Expense 3</option>-->
+                      <!--<option>Expense 4</option>-->
+                      <!--</select>-->
+
+                    </td>
+                    <td width="15%">
+                      <%= expense.text_field :amount, :class => "form-control", :id => "" %>
+                      <!--<input type="text" class="form-control"/>-->
+                    </td>
+                    <td>
+                      <%= expense.text_field :value_transfer_date, :placeholder => "Date", :id => "datetimepicker" %>
+                      <!--<input id="vtd-datepicker" value="09/01/2014"/>-->
+                    </td>
+                    <td>
+                      <%= expense.select :payment_mode, EventsHelper::Payment_mode, :class => "payment_type", :prompt => 'Select' %>
+                      <!--<select id="paymentBy">-->
+                      <!--<option>Payment 1</option>-->
+                      <!--<option>Payment 1</option>-->
+                      <!--<option>Payment 3</option>-->
+                      <!--<option>Payment 4</option>-->
+                      <!--</select>-->
+
+                    </td>
+                    <td>
+                      <%= expense.text_area :notes, :class => "form-control", :id => "", :placeholder => "Notes" %>
+                      <!--<textarea class="form-control" rows="1"></textarea>-->
+
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+        </table>
+
+
+    <% else %>
+        <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th scope="col">Sr.No.</th>
+            <th scope="col">Expense Type</th>
+            <th scope="col">$</th>
+            <th scope="col">Value Transfer Date</th>
+            <th scope="col">Payment By</th>
+            <th scope="col">Notes</th>
+          </tr>
+          <%= f.fields_for :expenses, f.object.expenses.each do |expense, index| %>
+
+              <tr>
+                <%#= expense.object.id %>
+                <td><%= index %></td>
                 <td>
-                  <% total =  @event.expenses %>
-                  <!--.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2')-->
-                       <% sum = "0" %>
-                  <% total.each do |a| %>
-                  <% sum =  sum.to_i + a.amount.to_i %>
-                      <% end %>
-                  <%= text_field_tag :total_amount, (sum.present? ? sum : ""), :class => "form-control", :id => "" , :disabled=>true %>
-                  <!--<input type="text" class="form-control">-->
+                  <%= expense.select :expense_type, EventsHelper::Expense, :class => "expense_type", :prompt => 'Select' %>
+                  <!--<select id="expense1">-->
+                  <!--<option>Expense 1</option>-->
+                  <!--<option>Expense 1</option>-->
+                  <!--<option>Expense 3</option>-->
+                  <!--<option>Expense 4</option>-->
+                  <!--</select>-->
+
+                </td>
+                <td width="15%">
+                  <%= expense.text_field :amount, :class => "form-control", :id => "" %>
+                  <!--<input type="text" class="form-control"/>-->
+                </td>
+                <td>
+                  <%= expense.text_field :value_transfer_date, :placeholder => "Date", :id => "datetimepicker" %>
+                  <!--<input id="vtd-datepicker" value="09/01/2014"/>-->
+                </td>
+                <td>
+                  <%= expense.select :payment_mode, EventsHelper::Payment_mode, :class => "payment_type", :prompt => 'Select' %>
+                  <!--<select id="paymentBy">-->
+                  <!--<option>Payment 1</option>-->
+                  <!--<option>Payment 1</option>-->
+                  <!--<option>Payment 3</option>-->
+                  <!--<option>Payment 4</option>-->
+                  <!--</select>-->
+
+                </td>
+                <td>
+                  <%= expense.text_area :notes, :class => "form-control", :id => "text_area", :placeholder => "Notes", :style => "margin:0px 0px 0px 0px;height:50px" %>
+                  <!--<textarea class="form-control" rows="1"></textarea>-->
+
                 </td>
               </tr>
-              </table>
-              <footer>
-                <button id="lock" type="button" class="lock btn btn-primary " style="width: 80px"><img style="width: 14px;height: 12px;padding-right: 5px;" src="/assets/unlock-f2d9129a534a87bbb2b1b54571db8b69.png">Lock
-                </button>
-                <%= f.submit "Save", :id => "", :class => "btn btn-primary" %>
-                <!--<button type="button" class="btn btn-primary  ">Save</button>-->
-                <a class="btn btn-primary " href="/events/index">Back</a>
-              </footer>
-
           <% end %>
+        </table>
 
 
-        </div>
-      </div>
-    </div>
+    <% end %>
+    <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td align="right"><strong>Total</strong></td>
+        <td>
+          <% total = @event.expenses %>
+          <!--.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2')-->
+          <% sum = "0" %>
+          <% total.each do |a| %>
+              <% sum = sum.to_i + a.amount.to_i %>
+          <% end %>
+          <%= text_field_tag :total_amount, (sum.present? ? sum : ""), :class => "form-control", :id => "", :disabled => true %>
+          <!--<input type="text" class="form-control">-->
+        </td>
+      </tr>
+    </table>
+    <footer>
+      <button id="lock" type="button" class="lock btn btn-primary " style="width: 80px">
+        <img style="width: 14px;height: 12px;padding-right: 5px;" src="/assets/unlock-f2d9129a534a87bbb2b1b54571db8b69.png">Lock
+      </button>
+      <%= f.submit "Save", :id => "", :class => "btn btn-primary" %>
+      <!--<button type="button" class="btn btn-primary  ">Save</button>-->
+      <a class="btn btn-primary " href="/events/index">Back</a>
+    </footer>
+
+<% end %>
+
+
+</div>
+</div>
+</div>
 </div>
 <script>
 
