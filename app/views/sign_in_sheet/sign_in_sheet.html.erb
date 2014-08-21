@@ -82,7 +82,7 @@
                 <% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
                 <%#= @sign_in.inspect %>
                 <% if @sign_in.present? %>
-                <% total =  @sign_in.non_profiled_attendee.to_i + @sign_in.prescribing_attendee.to_i + @sign_in.client_employee_attendee.to_i%>
+                <% total =  @sign_in.non_profiled_attendee.to_i + @sign_in.prescribing_attendee.to_i + @sign_in.client_employee_attendee.to_i + @sign_in.speaker.to_i%>
                     <% end %>
                 <%= text_field_tag :total_attendee, (total.present? ? total : ""), :class => "form-control", :id => "" , :disabled=>true %>
               </td>

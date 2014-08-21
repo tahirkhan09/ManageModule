@@ -243,7 +243,8 @@
                 <td></td>
                 <td align="right"><strong>Total</strong></td>
                 <td>
-                  <% total =  @event.expenses.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2') %>
+                  <% total =  @event.expenses %>
+                  <!--.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2')-->
                        <% sum = "0" %>
                   <% total.each do |a| %>
                   <% sum =  sum.to_i + a.amount.to_i %>

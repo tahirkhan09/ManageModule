@@ -6,14 +6,14 @@
 <% @sign_in = SignInSheet.where(:event_id => @event.id).first %>
 <%#= @sign_in.inspect %>
 <% if @sign_in.present? %>
-<% total =  @sign_in.non_profiled_attendee.to_f + @sign_in.prescribing_attendee.to_f + @sign_in.client_employee_attendee.to_f %>
+<% total =  @sign_in.non_profiled_attendee.to_i + @sign_in.prescribing_attendee.to_i + @sign_in.client_employee_attendee.to_i + @sign_in.speaker.to_i %>
     <% end %>
     <% total_fb_cost =  @event.expenses.where("expense_type =? or expense_type =? or expense_type =?",'Meals (Deposit)','Meals','Meals_2') %>
          <% sum_of_total_fb_cost = "0" %>
     <% total_fb_cost.each do |a| %>
     <% sum_of_total_fb_cost =  sum_of_total_fb_cost.to_f + a.amount.to_f %>
         <% end %>
-        <% ns_hcp_1 = @event.final_gurantee.to_f - total.to_f %>
+        <% ns_hcp_1 = @event.final_gurantee_count.to_i - total.to_i %>
         <% ns_hcp_2 =  (sum_of_total_fb_cost.to_f/@event.final_gurantee_count.to_f).to_f*ns_hcp_1 unless @event.final_gurantee_count.blank? %>
         <% net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) unless ns_hcp_2.to_s == "NaN" unless ns_hcp_2.blank?%>
         <% meal_cost_per_attendee = (net_meal_cost.to_f/total.to_f).to_f unless net_meal_cost.to_s == "NaN"%>
@@ -119,7 +119,8 @@
             <tr>
               <td>NS HCP $</td>
               <td>
-                <%= text_field_tag :ns_hcp_2,(ns_hcp_2.present? ? ns_hcp_2 : "" unless ns_hcp_2.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true %>
+
+                <%= text_field_tag :ns_hcp_2,(ns_hcp_2.present? ? number_with_precision(ns_hcp_2, :precision => 2) : "" unless ns_hcp_2.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true , :precision => 2%>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
             </tr>
@@ -127,14 +128,15 @@
               <td>Net Meal Cost </td>
               <td>
 
-                <%= text_field_tag :net_meal_cost,(net_meal_cost.present? ? net_meal_cost : "" unless net_meal_cost.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true %>
+                <%= text_field_tag :net_meal_cost,(net_meal_cost.present? ? number_with_precision(net_meal_cost, :precision => 2) : "" unless net_meal_cost.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
             </tr>
             <tr>
               <td>Meal Cost/Attendee</td>
               <td>
-                <%= text_field_tag :meal_cost_per_attendee,(meal_cost_per_attendee.present? ? meal_cost_per_attendee : "" unless meal_cost_per_attendee.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true %>
+
+                <%= text_field_tag :meal_cost_per_attendee,(meal_cost_per_attendee.present? ? number_with_precision(meal_cost_per_attendee, :precision => 2) : "" unless meal_cost_per_attendee.to_s == "NaN"),:class => "form-control", :id => "" , :disabled=>true %>
                 <!--<input type="text" class="form-control" placeholder="Calculated">-->
               </td>
             </tr>
