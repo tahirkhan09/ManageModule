@@ -182,8 +182,8 @@
           <%= f.fields_for :expenses, f.object.expenses.each do |expense, index| %>
 
               <tr>
-                <%#= expense.object.id %>
-                <td><%= index %></td>
+
+                <td><%= expense.index+1 %></td>
                 <td>
                   <%= expense.select :expense_type, EventsHelper::Expense, :class => "expense_type", :prompt => 'Select' %>
                   <!--<select id="expense1">-->
