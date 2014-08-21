@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  has_many :expenses,  -> { order 'created_at desc' } , :dependent => :destroy
+  has_many :expenses,  -> { order 'created_at asc' } , :dependent => :destroy
   accepts_nested_attributes_for :expenses, :allow_destroy => true
   has_one :sign_in_sheet, :dependent => :destroy
 
