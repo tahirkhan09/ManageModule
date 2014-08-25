@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get "welcome/index"
   resources :events do
     collection do
+      post "check_lock_event"
+      get "download_csv"
+      post "filter_events"
 
     end
 
