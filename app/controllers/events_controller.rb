@@ -73,7 +73,7 @@ class EventsController < ApplicationController
     end_date = Time.strptime(params[:end_date], '%m/%d/%Y')
     end_date = end_date.strftime("%Y-%m-%d")
     #@events = ActiveRecord::Base.connection.execute("SELECT * FROM events WHERE  STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
-    @events = Event.where("STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
+    @events = Event.where("to_date(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
     render :partial => "events/event_list"
   end
 
