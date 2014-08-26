@@ -96,7 +96,8 @@
             <%= f.submit "Save", :id => "add_flight_detail", :class=> "btn btn-primary" if @event.is_lock == false %>
             <%= f.submit "Save", :id => "add_flight_detail", :class=> "btn btn-primary", :disabled=>true if @event.is_lock == true %>
             <!--<button type="button" class="btn btn-primary  ">Save</button>-->
-            <a class="btn btn-primary " href="/events/index">Back</a>
+            <!--<a class="btn btn-primary " href="/events/index">Back</a>-->
+            <a onclick="window.location.href='/events/index';" href="" class="btn btn-primary ">Back</a>
           </footer>
               <% end %>
 
