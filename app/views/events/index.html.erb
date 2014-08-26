@@ -19,7 +19,7 @@
     $("#from-datepicker").kendoDatePicker();
     $("#to-datepicker").kendoDatePicker();
     $("#event_event_state, #event_speaker_state, #event_event_type, #event_quarter, #event_event_id_smi, #program_type, #event_type, #program_type, #quarter, #us_states, #speaker_states").kendoDropDownList();
-    $("#from-datepicker,#to-datepicker").change(function () {
+    $("#filter_events").onchange(function () {
         var start_date = $("#from-datepicker").val()
         var end_date = $("#to-datepicker").val()
         $.ajax({
