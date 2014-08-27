@@ -69,13 +69,31 @@ class EventsController < ApplicationController
 
   def filter_events
     start_date = Time.strptime(params[:start_date], '%m/%d/%Y')
-    start_date = start_date.strftime("%Y-%m-%d")
+    start_date = start_date.strftime("%Y-%m-%d").to_date
     end_date = Time.strptime(params[:end_date], '%m/%d/%Y')
-    end_date = end_date.strftime("%Y-%m-%d")
-    #@events = ActiveRecord::Base.connection.execute("SELECT * FROM events WHERE  STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
-    @events = Event.where("STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
+    end_date = end_date.strftime("%Y-%m-%d").to_date
+    all_events = []
+    @events = Event.all
+    @events.each do |event|
+      time1 = Time.strptime(event.event_date, '%m/%d/%Y').to_date
+      if (time1 <= end_date && time1 >= start_date)
+        all_events << event
+      end
+    end
+     @events = all_events
+    #@events = Event.where("STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
     render :partial => "events/event_list"
   end
+
+  #def filter_events
+  #start_date = Time.strptime(params[:start_date], '%m/%d/%Y')
+  #start_date = start_date.strftime("%Y-%m-%d")
+  #end_date = Time.strptime(params[:end_date], '%m/%d/%Y')
+  #end_date = end_date.strftime("%Y-%m-%d")
+  ##@events = ActiveRecord::Base.connection.execute("SELECT * FROM events WHERE  STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
+  #@events = Event.where("STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
+  #render :partial => "events/event_list"
+  #end
 
   def download_csv
     @events = Event.all
