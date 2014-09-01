@@ -15,6 +15,6 @@ class Event < ActiveRecord::Base
   validates :event_state, presence: true
   validates :speaker_city, presence: true
   validates :speaker_state, presence: true
-  validates :speaker_travel_required, presence: true
+  #validates :speaker_travel_required, presence: true
 
 end
