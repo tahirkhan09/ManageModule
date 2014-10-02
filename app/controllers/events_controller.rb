@@ -157,35 +157,35 @@ class EventsController < ApplicationController
           end
 
           #........................................................
-          csv << event.event_id_dlp
+          csv << "\"#{event.event_id_dlp}\""
           csv << ","
-          csv << event.rep_name
+          csv << "\"#{event.rep_name}\""
           csv << ","
-          csv << event.speaker_name
+          csv << "\"#{event.speaker_name}\""
           csv << ","
-          csv << event.event_type
+          csv << "\"#{event.event_type}\""
           csv << ","
-          csv << event.event_date
+          csv << "\"#{event.event_date}\""
           csv << ","
-          csv << event.quarter
+          csv << "\"#{event.quarter}\""
           csv << ","
-          csv << event.event_city
+          csv << "\"#{event.event_city}\""
           csv << ","
-          csv << event.event_state
+          csv << "\"#{event.event_state}\""
           csv << ","
-          csv << event.speaker_city
+          csv << "\"#{event.speaker_city}\""
           csv << ","
-          csv << event.speaker_state
+          csv << "\"#{event.speaker_state}\""
           csv << ","
           csv << event.speaker_travel_required? ? "YES" : "NO"
           csv << ","
-          csv << event.venue_name
+          csv << "\"#{event.venue_name}\""
           csv << ","
-          csv << event.venue_address
+          csv << "\"#{event.venue_address}\""
           csv << ","
-          csv << event.venue_contact_name
+          csv << "\"#{event.venue_contact_name}\""
           csv << ","
-          csv << event.venue_contact
+          csv << "\"#{event.venue_contact}\""
           csv << ","
           csv << total_meal_cost
           csv << ","
