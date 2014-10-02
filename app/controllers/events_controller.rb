@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   require 'csv'
+
   def index
     @events = Event.all
   end
@@ -80,7 +81,7 @@ class EventsController < ApplicationController
         all_events << event
       end
     end
-     @events = all_events
+    @events = all_events
     #@events = Event.where("STR_TO_DATE(event_date, '%m/%d/%Y') BETWEEN '#{start_date}'  AND '#{end_date}'")
     render :partial => "events/event_list"
   end
@@ -98,7 +99,7 @@ class EventsController < ApplicationController
   def download_csv
     @events = Event.all
     unless @events.blank?
-      header = "Event Id Dlp,Event Type,Rep Name,Speaker Name,Event City,Event State,Speaker City,Speaker State,Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
+      header = "Event Id Dlp,Rep Name,Speaker Name,Event Type,Event Date,Event Quarter,Event City,Event State,Speaker City,Speaker State,Travel,Venue Name,Venue Address,Venue Contact Name,Venue Contact #,Meals,Room Rental,AV Avenue,AV Third Party,Airface,Lodging,AMEX fee,G_Transportation, Total Expenses,# Non Profiled,# Prescribing,# Client Employees,# Speakers,Total Attendees,Guarantee $,Guarantee #,Gross F&B,NS HCP #,NS HCP $,Net F&B,$ F&B_Attendee,Compliant?" #         Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
       file = "ManageModule.csv"
       File.open(file, "w") do |csv|
         csv << header
@@ -110,6 +111,29 @@ class EventsController < ApplicationController
             total_attendee = @sign_in_sheet.non_profiled_attendee.to_i + @sign_in_sheet.prescribing_attendee.to_i + @sign_in_sheet.client_employee_attendee.to_i + @sign_in_sheet.speaker.to_i
           end
           total_fb_cost = event.expenses.where("expense_type =? or expense_type =? or expense_type =?", 'Meals (Deposit)', 'Meals', 'Meals_2')
+          total_meal_cost = event.expenses.where("expense_type =? or expense_type =? or expense_type =?", 'Meals (Deposit)', 'Meals', 'Meals_2').sum(:amount)
+          total_room_rental_cost = event.expenses.where("expense_type =?", 'Room Rental').sum(:amount)
+          total_a_v_venue_cost = event.expenses.where("expense_type =?", 'A/V Venue').sum(:amount)
+          total_a_v_third_party_cost = event.expenses.where("expense_type =?", 'A/V third party').sum(:amount)
+          total_airfare_cost = event.expenses.where("expense_type =?", 'Airfare').sum(:amount)
+          total_lodging_cost = event.expenses.where("expense_type =?", 'Lodging').sum(:amount)
+          total_amex_service_cost = event.expenses.where("expense_type =?", 'AMEX Service Charge').sum(:amount)
+          total_ground_transportation_cost = event.expenses.where("expense_type =?", 'Ground Transportation').sum(:amount)
+
+          unless @sign_in_sheet.blank?
+            non_profiled_attendee = @sign_in_sheet.non_profiled_attendee
+            prescribing_attendee = @sign_in_sheet.prescribing_attendee
+            client_employee_attendee = @sign_in_sheet.client_employee_attendee
+            speakers = @sign_in_sheet.speaker
+          end
+
+
+          event_expenses = event.expenses
+          total_expenses = 0
+          event_expenses.each do |a|
+            total_expenses = total_expenses.to_i + a.amount.to_i
+          end
+
           sum_of_total_fb_cost = "0"
           total_fb_cost.each do |a|
             sum_of_total_fb_cost = sum_of_total_fb_cost.to_f + a.amount.to_f
@@ -121,14 +145,29 @@ class EventsController < ApplicationController
           ns_hcp_2 = (sum_of_total_fb_cost.to_f/event.final_gurantee_count.to_f).to_f*ns_hcp_1 unless event.final_gurantee_count.blank?
           net_meal_cost = (sum_of_total_fb_cost.to_f - ns_hcp_2.to_f) unless ns_hcp_2.to_s == "NaN" unless ns_hcp_2.blank?
           meal_cost_per_attendee = (net_meal_cost.to_f/total_attendee.to_f).to_f unless net_meal_cost.to_s == "NaN"
+
+          if meal_cost_per_attendee.to_f < 150 || meal_cost_per_attendee.to_s == "NaN"
+            comp = "Compliant"
+          else
+            comp = "Non-compliant"
+          end
+
+          if meal_cost_per_attendee.to_s == "NaN"
+            meal_cost_per_attendee = 0
+          end
+
           #........................................................
           csv << event.event_id_dlp
-          csv << ","
-          csv << event.event_type
           csv << ","
           csv << event.rep_name
           csv << ","
           csv << event.speaker_name
+          csv << ","
+          csv << event.event_type
+          csv << ","
+          csv << event.event_date
+          csv << ","
+          csv << event.quarter
           csv << ","
           csv << event.event_city
           csv << ","
@@ -137,6 +176,42 @@ class EventsController < ApplicationController
           csv << event.speaker_city
           csv << ","
           csv << event.speaker_state
+          csv << ","
+          csv << event.speaker_travel_required? ? "YES" : "NO"
+          csv << ","
+          csv << event.venue_name
+          csv << ","
+          csv << event.venue_address
+          csv << ","
+          csv << event.venue_contact_name
+          csv << ","
+          csv << event.venue_contact
+          csv << ","
+          csv << total_meal_cost
+          csv << ","
+          csv << total_room_rental_cost
+          csv << ","
+          csv << total_a_v_venue_cost
+          csv << ","
+          csv << total_a_v_third_party_cost
+          csv << ","
+          csv << total_airfare_cost
+          csv << ","
+          csv << total_lodging_cost
+          csv << ","
+          csv << total_amex_service_cost
+          csv << ","
+          csv << total_ground_transportation_cost
+          csv << ","
+          csv << total_expenses
+          csv << ","
+          csv << non_profiled_attendee
+          csv << ","
+          csv << prescribing_attendee
+          csv << ","
+          csv << client_employee_attendee
+          csv << ","
+          csv << speakers
           csv << ","
           csv << total_attendee
           csv << ","
@@ -153,7 +228,27 @@ class EventsController < ApplicationController
           csv << net_meal_cost
           csv << ","
           csv << meal_cost_per_attendee
+          csv << ","
+          csv << comp
           csv << "\n"
+
+
+          #csv << total_attendee
+          #csv << ","
+          #csv << event.final_gurantee
+          #csv << ","
+          #csv << event.final_gurantee_count
+          #csv << ","
+          #csv << sum_of_total_fb_cost
+          #csv << ","
+          #csv << ns_hcp_1
+          #csv << ","
+          #csv << ns_hcp_2
+          #csv << ","
+          #csv << net_meal_cost
+          #csv << ","
+          #csv << meal_cost_per_attendee
+          #csv << "\n"
         end
       end
       send_file(file)

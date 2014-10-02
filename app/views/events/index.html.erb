@@ -7,7 +7,7 @@
   </div>
   <div class="head_right">
     <%= link_to "+ Create Event", new_event_path, :class => 'btn btn-primary', :style => "float:right" %>
-    <%= link_to "Report", new_event_path, :class => 'btn btn-primary', :style => "float:right;margin:0 3px 0 0;" %>
+    <%= link_to "Report", download_csv_events_path , :class => 'btn btn-primary', :style => "float:right;margin:0 3px 0 0;" %>
     <!--{:controller => "events", :action => "download_csv"}-->
   </div>
 </div>
