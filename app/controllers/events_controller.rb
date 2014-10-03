@@ -99,7 +99,7 @@ class EventsController < ApplicationController
   def download_csv
     @events = Event.all
     unless @events.blank?
-      header = "Event Id Dlp,Rep Name,Speaker Name,Event Type,Event Date,Event Quarter,Event City,Event State,Speaker City,Speaker State,Travel,Venue Name,Venue Address,Venue Contact Name,Venue Contact #,Meals,Room Rental,AV Avenue,AV Third Party,Airface,Lodging,AMEX fee,G_Transportation, Total Expenses,# Non Profiled,# Prescribing,# Client Employees,# Speakers,Total Attendees,Guarantee $,Guarantee #,Gross F&B,NS HCP #,NS HCP $,Net F&B,$ F&B_Attendee,Compliant?" #         Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
+      header = "Event ID,Rep Name,Speaker Name,Event Type,Event Date,Event Quarter,Event City,Event State,Speaker City,Speaker State,Travel,Venue Name,Venue Address,Venue Contact Name,Venue Contact #,Meals,Room Rental,AV Venue,AV Third Party,Airfare,Lodging,AMEX fee,G_Transportation, Total Expenses,# Non Profiled,# Prescribing,# Client Employees,# Speakers,Total Attendees,Guarantee $,Guarantee #,Gross F&B,NS HCP #,NS HCP $,Net F&B,$ F&B_Attendee,Compliant?" #         Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
       file = "ManageModule.csv"
       File.open(file, "w") do |csv|
         csv << header
@@ -131,7 +131,7 @@ class EventsController < ApplicationController
           event_expenses = event.expenses
           total_expenses = 0
           event_expenses.each do |a|
-            total_expenses = total_expenses.to_i + a.amount.to_i
+            total_expenses = total_expenses.to_f + a.amount.to_f
           end
 
           sum_of_total_fb_cost = "0"
