@@ -120,6 +120,7 @@ class EventsController < ApplicationController
           total_amex_service_cost = event.expenses.where("expense_type =?", 'AMEX Service Charge').sum(:amount)
           total_ground_transportation_cost = event.expenses.where("expense_type =?", 'Ground Transportation').sum(:amount)
 
+
           unless @sign_in_sheet.blank?
             non_profiled_attendee = @sign_in_sheet.non_profiled_attendee
             prescribing_attendee = @sign_in_sheet.prescribing_attendee
