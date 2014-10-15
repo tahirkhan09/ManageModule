@@ -72,10 +72,27 @@
           </table>
         </td>
         <td>
-          <div class="form-group">
-            <label for="quarter">Quarter</label><br>
-            <%= f.select :quarter, EventsHelper::Quarter_arr ,:prompt => 'Select' %>
-          </div>
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                      <tbody>
+                      <tr>
+                        <td width="50%">
+                          <div class="form-group">
+                            <label for="event_type">Event Time</label><br>
+                            <%= f.text_field :event_time, :placeholder => "Event Time", :class => "form-control", :id => "event_time" %>
+                          </div>
+                        </td>
+                        <td class="padding-left">
+                            <label for="evt_date">Time Zone</label><br>
+                            <%= f.text_field :time_zone, :placeholder => "Time Zone", :class => "form-control", :id => "time_zone" %>
+                            <br>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+          <!--<div class="form-group">-->
+            <!--<label for="quarter">Quarter</label><br>-->
+            <!--<%#= f.select :quarter, EventsHelper::Quarter_arr ,:prompt => 'Select' %>-->
+          <!--</div>-->
         </td>
       </tr>
       <tr>
@@ -137,6 +154,13 @@
     <table width="100%" cellspacing="0" cellpadding="0" border="0">
       <tbody>
       <tr>
+        <td style="width: 50%">
+          <div class="form-group">
+            <label for="quarter">Quarter</label><br>
+            <%= f.select :quarter, EventsHelper::Quarter_arr ,:prompt => 'Select' %>
+          </div>
+
+        </td>
         <td width="50%">
           <label>Speaker Travel Required?</label>
           <label>

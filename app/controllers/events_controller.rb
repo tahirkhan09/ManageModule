@@ -27,15 +27,15 @@ class EventsController < ApplicationController
 
   end
 
-  #def update
-  #    @event = Event.find(params[:id])
-  #    if @event.update(params_event)
-  #      flash[:success] = 'Conference Has Been Updated Successfully'
-  #      redirect_to events_index_path
-  #    else
-  #      render "edit"
-  #    end
-  #  end
+  def update
+      @event = Event.find(params[:id])
+      if @event.update(params_event)
+        flash[:success] = 'Conference Has Been Updated Successfully'
+        redirect_to events_index_path
+      else
+        render "edit"
+      end
+    end
 
 
   #def destroy
@@ -45,9 +45,9 @@ class EventsController < ApplicationController
   #  end
   #end
 
-  #def edit
-  #  @event = Event.find(params[:id])
-  #end
+  def edit
+    @event = Event.find(params[:id])
+  end
   def check_lock_event
     @event = Event.find(params[:event_id])
     if @event.is_lock == false
@@ -99,7 +99,7 @@ class EventsController < ApplicationController
   def download_csv
     @events = Event.all
     unless @events.blank?
-      header = "Event ID,Rep Name,Speaker Name,Event Type,Event Date,Event Quarter,Event City,Event State,Speaker City,Speaker State,Travel,Venue Name,Venue Address,Venue Contact Name,Venue Contact #,Meals,Room Rental,AV Venue,AV Third Party,Airfare,Lodging,AMEX fee,G_Transportation, Total Expenses,# Non Profiled,# Prescribing,# Client Employees,# Speakers,Total Attendees,Guarantee $,Guarantee #,Gross F&B,NS HCP #,NS HCP $,Net F&B,$ F&B_Attendee,Compliant?" #         Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
+      header = "Event ID,Programme Type,Rep Name,Speaker Name,Event Type,Event Date,Event Time,Time Zone,Event Quarter,Event City,Event State,Speaker City,Speaker State,Travel,Venue Name,Venue Address,Venue Contact Name,Venue Contact #,Meals,Room Rental,AV Venue,AV Third Party,Airfare,Lodging,AMEX fee,G_Transportation, Total Expenses,# Non Profiled,# Prescribing,# Client Employees,# Speakers,Total Attendees,Guarantee $,Guarantee #,Gross F&B,NS HCP #,NS HCP $,Net F&B,$ F&B_Attendee,Compliant?" #         Total Attendees,Final Gurantee,Final Gurantee Count,F&B Cost,NS HCP #,NS HCP $,Net Meal Cost, Meal Cost/Attendee"
       file = "ManageModule.csv"
       File.open(file, "w") do |csv|
         csv << header
@@ -160,6 +160,8 @@ class EventsController < ApplicationController
           #........................................................
           csv << "\"#{event.event_id_dlp}\""
           csv << ","
+          csv << "\"#{event.event_id_smi}\""
+          csv << ","
           csv << "\"#{event.rep_name}\""
           csv << ","
           csv << "\"#{event.speaker_name}\""
@@ -167,6 +169,10 @@ class EventsController < ApplicationController
           csv << "\"#{event.event_type}\""
           csv << ","
           csv << "\"#{event.event_date}\""
+          csv << ","
+          csv << "\"#{event.event_time? ? event.event_time : ""}\""
+          csv << ","
+          csv << "\"#{event.time_zone? ? event.time_zone : ""}\""
           csv << ","
           csv << "\"#{event.quarter}\""
           csv << ","
@@ -258,6 +264,6 @@ class EventsController < ApplicationController
 
   private
   def params_event
-    params[:event].permit(:event_id_dlp, :event_id_smi, :event_type, :rep_name, :speaker_name, :event_date, :event_month, :quarter, :event_city, :event_state, :speaker_city, :speaker_state, :speaker_travel_required)
+    params[:event].permit(:event_id_dlp, :event_id_smi, :event_type, :rep_name, :speaker_name, :event_date, :event_month, :quarter, :event_city, :event_state, :speaker_city, :speaker_state, :speaker_travel_required,:event_time,:time_zone)
   end
 end
